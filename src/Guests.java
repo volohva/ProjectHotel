@@ -17,6 +17,7 @@ public class Guests {
         Guests guests = new Guests();
         guests.addGuest(1, new ArrayList<String>(Arrays.asList("Рыбаков Игорь Владимирович", "28", "м")));
         guests.addGuest(2, new ArrayList<String>(Arrays.asList("Сибгатуллов Шамиль Раильевич", "64", "м")));
+
         guests.guestsList();
         return guests;
     }
