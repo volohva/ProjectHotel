@@ -8,8 +8,10 @@ public class Rooms {
     }
 
     public void roomsList() {
-        for (String key: rooms.keySet()){
-            System.out.println("Комната № "+ key + ": " + rooms.keySet());
+        for (Map.Entry<String, List<String>> entry: rooms.entrySet()){
+            String key = entry.getKey();
+            List<String> value = entry.getValue();
+            System.out.println("Комната № "+ key + ": " + value);
         }
     }
 
