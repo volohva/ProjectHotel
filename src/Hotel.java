@@ -1,9 +1,13 @@
 import java.util.*;
 
+//основной класс нашего проекта
 public class Hotel {
-    //тут наши методы
+    //тут будет метод расселяющий гостей по комнатам
+    //тут будет метод рандомно или по значению выводящий в консоль некого гостя в некой комнате
+
     public static void main(String args[]) {
 
+        //тут будут switchcase для работы с консолью
         Rooms.main();
         HashMap<String, List<String>> rooms = new HashMap<>();
         rooms = Rooms.rooms;
