@@ -12,5 +12,7 @@ public class Hotel {
         Guests.main();
         HashMap<Integer, List<String>> guests = new HashMap<>();
         guests = Guests.guests;
+        Integer newID = Guests.main().createNewUserID(guests);
+        System.out.println(newID);
     }
 }
