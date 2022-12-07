@@ -79,10 +79,14 @@ public class Hotel {
         //HashMap<Integer, List<String>> ourGuests = new HashMap<>();
         //ourGuests = Guests.guests;
 
+        //проверка методов
+
         //Guests.guestsList();
         //Guests.changeName(3, "Алеша");
-        //Guests.guestsList();
-        //Guests.addGuestConsole("jvnb", "kjnb", "hjjh");
+        //Guests.changeAge(3,"56");
+        //Guests.changeSex(3,"мужчина");
+
+       //Guests.addGuestConsole("jvnb", "kjnb", "hjjh");
         Guests.guestsList();
         //Rooms.main().roomsList();
         //System.out.println();

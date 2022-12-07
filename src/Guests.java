@@ -25,7 +25,7 @@ public class Guests {
         return counter + 1;
     }
 
-    //тут будут методы для изменения данных гостя,
+    //тут будут методы
     //поиска по id и удаления из бд
 
     //изменение ФИО гостя
@@ -40,7 +40,33 @@ public class Guests {
         System.out.println("Полные новые данные гостя: <"+guests.get(guestID)+">");
         return guests;
     }
-    //тут Ольга вставит функции подмены возраста и пола
+    //изменение возраста гостя
+    public static HashMap<Integer, List<String>> changeAge(Integer guestID, String guestAge) {
+        List<String> guestInfo = new ArrayList<String>();
+        System.out.println("Гость: " + guests.get(guestID));
+        guestInfo = guests.get(guestID);
+        String oldAge = guestInfo.get(1);
+        guestInfo.set(1, guestAge);
+        guests.put(guestID, new ArrayList<String>(guestInfo));
+        System.out.println("Возраст гостя " + guestID + " изменен с <" + oldAge + "> на <" + guestInfo.get(1) + ">");
+        System.out.println("Полные новые данные гостя: <" + guests.get(guestID) + ">");
+        return guests;
+    }
+
+    //изменение пола гостя
+    public static HashMap<Integer, List<String>> changeSex(Integer guestID, String guestSex) {
+        List<String> guestInfo = new ArrayList<String>();
+        System.out.println("Гость: " + guests.get(guestID));
+        guestInfo = guests.get(guestID);
+        String oldSex = guestInfo.get(2);
+        guestInfo.set(2, guestSex);
+        guests.put(guestID, new ArrayList<String>(guestInfo));
+        System.out.println("Пол гостя " + guestID + " изменен с <" + oldSex + "> на <" + guestInfo.get(2) + ">");
+        System.out.println("Полные новые данные гостя: <" + guests.get(guestID) + ">");
+        return guests;
+    }
+
+
 
     //добавление нового гостя с консоли
     public static HashMap<Integer, List<String>> addGuestConsole(String nameGuest, String ageGuest, String sexGuest){
