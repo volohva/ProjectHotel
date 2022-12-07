@@ -60,8 +60,8 @@ public class Guests {
     // методы внутри
 
     //изменение ФИО гостя
-    public static void changeName(HashMap<Integer, List<String>> guests, Integer guestID, String guestName) {
-        Guests.guests = guests;
+    public static void changeName(Integer guestID, String guestName) {
+        //Guests.guests = guests;
         List<String> guestInfo = new ArrayList<String>();
         System.out.println("Гость: " + guests.get(guestID));
         guestInfo=guests.get(guestID);
@@ -71,10 +71,11 @@ public class Guests {
         System.out.println("ФИО гостя "+guestID+" изменено с <"+oldName+"> на <"+guestInfo.get(0)+">");
         System.out.println("Полные новые данные гостя: <"+guests.get(guestID)+">");
 
+
             }
     //изменение возраста гостя
-    public static void changeAge(HashMap<Integer, List<String>> guests, Integer guestID, String guestAge){
-        Guests.guests = guests;
+    public static void changeAge(Integer guestID, String guestAge){
+        //Guests.guests = guests;
         List<String> guestInfo = new ArrayList<String>();
         guestInfo=guests.get(guestID);
         String oldAge=guestInfo.get(1);
@@ -85,8 +86,8 @@ public class Guests {
 
     }
     //изменение пола гостя
-    public static void changeSex(HashMap<Integer, List<String>> guests, Integer guestID, String guestSex) {
-        Guests.guests = guests;
+    public static void changeSex(Integer guestID, String guestSex) {
+       //Guests.guests = guests;
         List<String> guestInfo = new ArrayList<String>();
         guestInfo = guests.get(guestID);
         String oldSex = guestInfo.get(2);

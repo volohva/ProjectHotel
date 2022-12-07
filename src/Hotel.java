@@ -28,11 +28,11 @@ public class Hotel {
         String guestSex = "мужчина";
 
 //метод - смена ФИО гостя
-        Guests.changeName(guests, guestID, guestName);
+        Guests.changeName(guestID, guestName);
 //вызов метода - смена возраста гостя
-        Guests.changeAge(guests, guestID, guestAge);
+        Guests.changeAge(guestID, guestAge);
 //вызов метода - смена пола гостя
-        Guests.changeSex(guests, guestID, guestSex);
+        Guests.changeSex(guestID, guestSex);
 
 
 
