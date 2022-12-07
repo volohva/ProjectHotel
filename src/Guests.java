@@ -21,12 +21,42 @@ public class Guests {
 
     //создаем новый id для добавления нового гостя
     public static Integer createNewUserID(HashMap<Integer, List<String>> guestsStorage) {
-        Integer counter = guestsStorage.size();
-        return counter + 1;
+        Integer counter = null;
+        for (Map.Entry<Integer, List<String>> entry: guests.entrySet()) {
+            List<String> value = new ArrayList<>();
+            value.add("empty");
+            if (value.equals(entry.getValue())) {
+                counter = entry.getKey();
+            }
+        }
+        if (counter == null){
+            counter = guestsStorage.size() + 1;
+        }
+        return counter;
     }
 
-    //тут будут методы
-    //поиска по id и удаления из бд
+    //поиск гостя по id
+    public static HashMap<Integer, List<String>> searchGuest(int id) {
+        if (guests.containsKey(id)){
+            System.out.println("Под этим номером нашелся Гость:\n" + guests.get(id));
+        }
+        else {
+            System.out.println("Такого номера нет в базе!");
+        }
+        return guests;
+    }
+
+    //удаление гостя по id
+    public static HashMap<Integer, List<String>> deleteGuest(int id) {
+        if (guests.containsKey(id)){
+            System.out.println("Гость:\n" + guests.get(id) + "  был удален из базы.");
+            guests.put(id, new ArrayList<String>(Arrays.asList("empty")));
+        }
+        else {
+            System.out.println("Такого номера нет в базе!");
+        }
+        return guests;
+    }
 
     //изменение ФИО гостя
     public static HashMap<Integer, List<String>> changeName(Integer guestID, String guestName) {
@@ -47,7 +77,7 @@ public class Guests {
         guestInfo = guests.get(guestID);
         String oldAge = guestInfo.get(1);
         guestInfo.set(1, guestAge);
-        guests.put(guestID, new ArrayList<String>(guestInfo));
+        guests.put(guestID, guestInfo);
         System.out.println("Возраст гостя " + guestID + " изменен с <" + oldAge + "> на <" + guestInfo.get(1) + ">");
         System.out.println("Полные новые данные гостя: <" + guests.get(guestID) + ">");
         return guests;
@@ -60,13 +90,11 @@ public class Guests {
         guestInfo = guests.get(guestID);
         String oldSex = guestInfo.get(2);
         guestInfo.set(2, guestSex);
-        guests.put(guestID, new ArrayList<String>(guestInfo));
+        guests.put(guestID, guestInfo);
         System.out.println("Пол гостя " + guestID + " изменен с <" + oldSex + "> на <" + guestInfo.get(2) + ">");
         System.out.println("Полные новые данные гостя: <" + guests.get(guestID) + ">");
         return guests;
     }
-
-
 
     //добавление нового гостя с консоли
     public static HashMap<Integer, List<String>> addGuestConsole(String nameGuest, String ageGuest, String sexGuest){
@@ -92,6 +120,9 @@ public class Guests {
         }
         return booking;
     }
+
+    //тут будет вывод одного соответвия гость-комната
+
 
     public static void main() {
 
@@ -119,15 +150,5 @@ public class Guests {
         guests.addGuest(19, new ArrayList<String>(Arrays.asList("Разумихина Галина Павловна","65", "женщина")));
         guests.addGuest(20, new ArrayList<String>(Arrays.asList("Санджиева Айса Эрдниевна","29", "женщина")));
 
-
-        //HashMap<Integer, List<String>> rooms = new HashMap<>();
-        //rooms = Rooms.main().rooms;
-
-        //HashMap<Integer, Integer> guestsInRooms = new HashMap<>();
-        //guestsInRooms = giveGuestsRooms(Rooms.main().rooms);
-        //System.out.println(guestsInRooms);
-
-
-        //return 0;
     }
 }

@@ -2,93 +2,92 @@ import java.util.*;
 
 //основной класс нашего проекта
 public class Hotel {
-    //тут будет метод расселяющий гостей по комнатам
-    /*public static HashMap<Integer, Integer> giveGuestsRooms(HashMap<Integer, List<String>> guests, HashMap<Integer, List<String>> rooms) {
-        Random r = new Random();
-        ArrayList<Integer> roomNumbers = new ArrayList<>(rooms.keySet());
-        HashMap<Integer, Integer> booking = new HashMap<>();
-        for (Integer i = 0; i < guests.size(); i++) {
-            Integer roomNumber = r.nextInt(roomNumbers.size());
-            booking.put(i, roomNumbers.get(roomNumber));
-            roomNumbers.removeIf(element -> element.equals(roomNumbers.get(roomNumber)));
-        }
-        return booking;
-    }*/
-
-    //тут будет метод рандомно или по значению выводящий в консоль некого гостя в некой комнате
 
     public static void main(String args[]) {
-
-        //тут будут switchcase для работы с консолью
-        /*Rooms.main();
-        HashMap<String, List<String>> rooms = new HashMap<>();
-        rooms = Rooms.rooms;
-        System.out.println(rooms.get("room_ID_001"));
-
-        Guests.main().guestsList();
-        HashMap<Integer, List<String>> guests = new HashMap<>();
-        guests = Guests.guests;
-        Integer newID = Guests.main().createNewUserID(guests);
-        System.out.println(newID);*/
-
-        //HashMap<Integer, List<String>> guests = new HashMap<>();
-        //guests = Guests.main().guests;
-        //HashMap<Integer, List<String>> rooms = new HashMap<>();
-        //rooms = Rooms.main().rooms;
 
         //инициализация бд гостей
         Guests.main();
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Для выбора нужной команды нажмите соответствующую ей цифру:\n1 - печать списка всех комнат\n" +
-                "2 - печать списка всех гостей\n" + "3 - добавление нового гостя в базу\n");
-        int tag = in.nextInt();
+        //предлставление выбора пользователю
+        int tag = 1;
+        while (tag !=0) {
+            tag = 0;
+            Scanner in = new Scanner(System.in);
+            System.out.println("\n"+"Для выхода из программы нажмите 0.\n" + "Для выбора нужной команды нажмите соответствующую ей цифру:\n1 - печать списка всех комнат\n" +
+                    "2 - печать списка всех гостей\n" + "3 - добавление нового гостя в базу\n" + "4 - изменить имя гостя в базе\n"+
+                    "5 - изменить возраст гостя в базе\n" + "6 - изменить пол гостя в базе\n" +
+                    "7 - найти гостя по id\n" + "8 - удалить гостя по id\n");
+            tag = in.nextInt();
 
-        switch (tag){
-            case (1):
-                Rooms.main().roomsList();
-                break;
-            case (2):
-                Guests.guestsList();
-                break;
-            case (3):{
-                Scanner newGuest = new Scanner(System.in);
-                System.out.println("Введите ФИО нового гостя: ");
-                String nameGuest = newGuest.nextLine();
-                System.out.println("Введите возраст нового гостя: ");
-                String ageGuest = newGuest.nextLine();
-                System.out.println("Введите пол нового гостя: ");
-                String sexGuest = newGuest.nextLine();
-                Guests.addGuestConsole(nameGuest, ageGuest, sexGuest);
-                break;
+            switch (tag){
+                case (0):
+                    System.out.println("Работа завершена.");
+                    break;
+                case (1):
+                    Rooms.main().roomsList();
+                    break;
+                case (2):
+                    Guests.guestsList();
+                    break;
+                case (3):{
+                    Scanner newGuest = new Scanner(System.in);
+                    System.out.println("Введите ФИО нового гостя: ");
+                    String nameGuest = newGuest.nextLine();
+                    System.out.println("Введите возраст нового гостя: ");
+                    String ageGuest = newGuest.nextLine();
+                    System.out.println("Введите пол нового гостя: ");
+                    String sexGuest = newGuest.nextLine();
+                    Guests.addGuestConsole(nameGuest, ageGuest, sexGuest);
+                    break;
+                }
+                case (4):{
+                    Scanner id = new Scanner(System.in);
+                    System.out.println("Введите id гостя: ");
+                    Integer idGuest = id.nextInt();
+                    Scanner newName = new Scanner(System.in);
+                    System.out.println("Введите новоe имя гостя: ");
+                    String nameGuest = newName.nextLine();
+                    Guests.changeName(idGuest, nameGuest);
+                    break;
+                }
+                case (5):{
+                    Scanner id = new Scanner(System.in);
+                    System.out.println("Введите id гостя: ");
+                    Integer idGuest = id.nextInt();
+                    Scanner newAge = new Scanner(System.in);
+                    System.out.println("Введите новый возраст гостя: ");
+                    String ageGuest = newAge.nextLine();
+                    Guests.changeAge(idGuest, ageGuest);
+                    break;
+                }
+                case (6):{
+                    Scanner id = new Scanner(System.in);
+                    System.out.println("Введите id гостя: ");
+                    Integer idGuest = id.nextInt();
+                    Scanner newSex = new Scanner(System.in);
+                    System.out.println("Введите новый пол гостя: ");
+                    String sexGuest = newSex.nextLine();
+                    Guests.changeSex(idGuest, sexGuest);
+                    break;
+                }
+                case (7):{
+                    Scanner id = new Scanner(System.in);
+                    System.out.println("Введите id гостя: ");
+                    Integer idGuest = id.nextInt();
+                    Guests.searchGuest(idGuest);
+                    break;
+                }
+                case (8):{
+                    Scanner id = new Scanner(System.in);
+                    System.out.println("Введите id гостя: ");
+                    Integer idGuest = id.nextInt();
+                    Guests.deleteGuest(idGuest);
+                    break;
+                }
+                default:
+                    System.out.println("Введенной вами команды не существует!");
+                    break;
             }
-            default:
-                System.out.println("Введенной вами команды не существует!");
-                break;
         }
-        in.close();
-
-        //HashMap<Integer, Integer> guestsInRooms = new HashMap<>();
-        //guestsInRooms = giveGuestsRooms(guests, rooms);
-
-
-
-
-
-
-        //HashMap<Integer, List<String>> ourGuests = new HashMap<>();
-        //ourGuests = Guests.guests;
-
-        //проверка методов
-
-        //Guests.guestsList();
-        //Guests.changeName(3, "Алеша");
-        //Guests.changeAge(3,"56");
-        //Guests.changeSex(3,"мужчина");
-
-       //Guests.addGuestConsole("jvnb", "kjnb", "hjjh");
-        Guests.guestsList();
-        //Rooms.main().roomsList();
-        //System.out.println();
     }
 }

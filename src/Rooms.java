@@ -6,7 +6,7 @@ public class Rooms {
     //наша база данных для хранения комнат
     public static HashMap<Integer, List<String>> rooms = new HashMap<>();
 
-    //метод для добавления комнаты в базу данных, используется в главной функции этого класса
+    //метод для добавления комнаты в базу данных
     public void addRooms(Integer idRoom, ArrayList dataRoom) {
         rooms.put(idRoom, dataRoom);
     }
