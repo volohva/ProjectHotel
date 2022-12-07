@@ -3,6 +3,18 @@ import java.util.*;
 //основной класс нашего проекта
 public class Hotel {
     //тут будет метод расселяющий гостей по комнатам
+    public static HashMap<Integer, Integer> giveGuestsRooms(HashMap<Integer, List<String>> guests, HashMap<Integer, List<String>> rooms) {
+        Random r = new Random();
+        ArrayList<Integer> roomNumbers = new ArrayList<>(rooms.keySet());
+        HashMap<Integer, Integer> booking = new HashMap<>();
+        for (Integer i = 0; i < guests.size(); i++) {
+            Integer roomNumber = r.nextInt(roomNumbers.size());
+            booking.put(i, roomNumbers.get(roomNumber));
+            roomNumbers.removeIf(element -> element.equals(roomNumbers.get(roomNumber)));
+        }
+        return booking;
+    }
+
     //тут будет метод рандомно или по значению выводящий в консоль некого гостя в некой комнате
 
     public static void main(String args[]) {
@@ -18,6 +30,13 @@ public class Hotel {
         guests = Guests.guests;
         Integer newID = Guests.main().createNewUserID(guests);
         System.out.println(newID);*/
+
+        HashMap<Integer, List<String>> guests = new HashMap<>();
+        guests = Guests.main().guests;
+        HashMap<Integer, List<String>> rooms = new HashMap<>();
+        rooms = Rooms.main().rooms;
+
+
 
         Scanner in = new Scanner(System.in);
         System.out.println("Для выбора нужной команды нажмите соответствующую ей цифру:\n1 - печать списка всех комнат\n" +
@@ -48,6 +67,14 @@ public class Hotel {
                 break;
         }
         in.close();
+
+        HashMap<Integer, Integer> guestsInRooms = new HashMap<>();
+        guestsInRooms = giveGuestsRooms(guests, rooms);
+
+
+
+
+
 
     }
 }
