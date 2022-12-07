@@ -57,4 +57,44 @@ public class Guests {
 
         return guests;
     }
+    // методы внутри
+
+    //изменение ФИО гостя
+    public static void changeName(HashMap<Integer, List<String>> guests, Integer guestID, String guestName) {
+        Guests.guests = guests;
+        List<String> guestInfo = new ArrayList<String>();
+        System.out.println("Гость: " + guests.get(guestID));
+        guestInfo=guests.get(guestID);
+        String oldName=guestInfo.get(0);
+        guestInfo.set(0,guestName);
+        guests.put(guestID, new ArrayList<String>(guestInfo));
+        System.out.println("ФИО гостя "+guestID+" изменено с <"+oldName+"> на <"+guestInfo.get(0)+">");
+        System.out.println("Полные новые данные гостя: <"+guests.get(guestID)+">");
+
+            }
+    //изменение возраста гостя
+    public static void changeAge(HashMap<Integer, List<String>> guests, Integer guestID, String guestAge){
+        Guests.guests = guests;
+        List<String> guestInfo = new ArrayList<String>();
+        guestInfo=guests.get(guestID);
+        String oldAge=guestInfo.get(1);
+        guestInfo.set(1,guestAge);
+        guests.put(guestID, new ArrayList<String>(guestInfo));
+        System.out.println("Возраст гостя "+guestID+" изменен с <"+oldAge+"> на <"+guestInfo.get(1)+">");
+        System.out.println("Полные новые данные гостя: <"+guests.get(guestID)+">");
+
+    }
+    //изменение пола гостя
+    public static void changeSex(HashMap<Integer, List<String>> guests, Integer guestID, String guestSex) {
+        Guests.guests = guests;
+        List<String> guestInfo = new ArrayList<String>();
+        guestInfo = guests.get(guestID);
+        String oldSex = guestInfo.get(2);
+        guestInfo.set(2, guestSex);
+        guests.put(guestID, new ArrayList<String>(guestInfo));
+        System.out.println("Пол гостя " + guestID + " изменен с <" + oldSex + "> на <" + guestInfo.get(2) + ">");
+        System.out.println("Полные новые данные гостя: <" + guests.get(guestID) + ">");
+
+    }
+
 }

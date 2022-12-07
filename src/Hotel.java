@@ -13,11 +13,28 @@ public class Hotel {
         rooms = Rooms.rooms;
         System.out.println(rooms.get("room_ID_001"));
 
-        Guests.main().guestsList();
+        */Guests.main().guestsList();
         HashMap<Integer, List<String>> guests = new HashMap<>();
         guests = Guests.guests;
-        Integer newID = Guests.main().createNewUserID(guests);
-        System.out.println(newID);*/
+        //Integer newID = Guests.main().createNewUserID(guests);
+        //System.out.println(newID);*/
+
+
+//убрать потом, переменные для проверки, что метод работает.
+// Нужны данные с консоли - Integer guestID, String guestName, String guestAge, String guestSex
+        Integer guestID = 3;
+        String guestName = "ФФФ";
+        String guestAge = "46";
+        String guestSex = "мужчина";
+
+//метод - смена ФИО гостя
+        Guests.changeName(guests, guestID, guestName);
+//вызов метода - смена возраста гостя
+        Guests.changeAge(guests, guestID, guestAge);
+//вызов метода - смена пола гостя
+        Guests.changeSex(guests, guestID, guestSex);
+
+
 
         Scanner in = new Scanner(System.in);
         System.out.println("Для выбора нужной команды нажмите соответствующую ей цифру:\n1 - печать списка всех комнат\n" +
@@ -37,5 +54,6 @@ public class Hotel {
                 break;
         }
 
+        Guests.main().guestsList();
     }
 }
