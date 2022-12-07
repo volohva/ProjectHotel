@@ -8,12 +8,11 @@ public class Guests {
 
     //метод для добавления гостя в базу данных, используется в главной функции этого класса
     public void addGuest(Integer idGuest, ArrayList dataGuest) {
-
         guests.put(idGuest, dataGuest);
     }
 
     //метод выводящий список всех гостей из базы данных
-    public void guestsList() {
+    public static void guestsList() {
         int k = Guests.createNewUserID(guests)-1;
         for (int i = 1; i<=k; i++){
             System.out.println("Гость №"+i+": " + guests.get(i));
@@ -29,7 +28,22 @@ public class Guests {
     //тут будут методы для изменения данных гостя,
     //поиска по id и удаления из бд
 
-    public void addGuestConsole(String nameGuest, String ageGuest, String sexGuest){
+    //изменение ФИО гостя
+    public static HashMap<Integer, List<String>> changeName(Integer guestID, String guestName) {
+        List<String> guestInfo = new ArrayList<>();
+        System.out.println("Гость: " + guests.get(guestID));
+        guestInfo=guests.get(guestID);
+        String oldName=guestInfo.get(0);
+        guestInfo.set(0,guestName);
+        guests.put(guestID, guestInfo);
+        System.out.println("ФИО гостя "+guestID+" изменено с <"+oldName+"> на <"+guestInfo.get(0)+">");
+        System.out.println("Полные новые данные гостя: <"+guests.get(guestID)+">");
+        return guests;
+    }
+    //тут Ольга вставит функции подмены возраста и пола
+
+    //добавление нового гостя с консоли
+    public static HashMap<Integer, List<String>> addGuestConsole(String nameGuest, String ageGuest, String sexGuest){
         ArrayList<String> guestData = new ArrayList<>();
         guestData.add(nameGuest);
         guestData.add(ageGuest);
@@ -37,9 +51,23 @@ public class Guests {
         Integer idGuest = createNewUserID(guests);
         guests.put(idGuest, guestData);
         System.out.println("Гость: " + nameGuest + " возраста: " + ageGuest + " пола: " + sexGuest + " добавлен в базу под номером: " + idGuest);
+        return guests;
     }
 
-    public static Guests main() {
+    //расселение гостей по комнатам
+    public static HashMap<Integer, Integer> giveGuestsRooms(HashMap<Integer, List<String>> rooms) {
+        Random r = new Random();
+        ArrayList<Integer> roomNumbers = new ArrayList<>(rooms.keySet());
+        HashMap<Integer, Integer> booking = new HashMap<>();
+        for (Integer i = 0; i < guests.size(); i++) {
+            Integer roomNumber = r.nextInt(roomNumbers.size());
+            booking.put(i, roomNumbers.get(roomNumber));
+            roomNumbers.removeIf(element -> element.equals(roomNumbers.get(roomNumber)));
+        }
+        return booking;
+    }
+
+    public static void main() {
 
         Guests guests = new Guests();
 
@@ -65,6 +93,15 @@ public class Guests {
         guests.addGuest(19, new ArrayList<String>(Arrays.asList("Разумихина Галина Павловна","65", "женщина")));
         guests.addGuest(20, new ArrayList<String>(Arrays.asList("Санджиева Айса Эрдниевна","29", "женщина")));
 
-        return guests;
+
+        //HashMap<Integer, List<String>> rooms = new HashMap<>();
+        //rooms = Rooms.main().rooms;
+
+        //HashMap<Integer, Integer> guestsInRooms = new HashMap<>();
+        //guestsInRooms = giveGuestsRooms(Rooms.main().rooms);
+        //System.out.println(guestsInRooms);
+
+
+        //return 0;
     }
 }
