@@ -3,10 +3,10 @@ import java.util.*;
 //основной класс нашего проекта
 public class Hotel {
     //тут будет метод расселяющий гостей по комнатам
-    public static HashMap<Integer, String> giveGuestsRooms(HashMap<Integer, List<String>> guests, HashMap<String, List<String>> rooms) {
+    public static HashMap<Integer, Integer> giveGuestsRooms(HashMap<Integer, List<String>> guests, HashMap<Integer, List<String>> rooms) {
         Random r = new Random();
-        ArrayList<String> roomNumbers = new ArrayList<>(rooms.keySet());
-        HashMap<Integer, String> booking = new HashMap<>();
+        ArrayList<Integer> roomNumbers = new ArrayList<>(rooms.keySet());
+        HashMap<Integer, Integer> booking = new HashMap<>();
         for (Integer i = 0; i < guests.size(); i++) {
             Integer roomNumber = r.nextInt(roomNumbers.size());
             booking.put(i, roomNumbers.get(roomNumber));
@@ -33,7 +33,7 @@ public class Hotel {
 
         HashMap<Integer, List<String>> guests = new HashMap<>();
         guests = Guests.main().guests;
-        HashMap<String, List<String>> rooms = new HashMap<>();
+        HashMap<Integer, List<String>> rooms = new HashMap<>();
         rooms = Rooms.main().rooms;
 
 
@@ -68,7 +68,7 @@ public class Hotel {
         }
         in.close();
 
-        HashMap<Integer, String> guestsInRooms = new HashMap<>();
+        HashMap<Integer, Integer> guestsInRooms = new HashMap<>();
         guestsInRooms = giveGuestsRooms(guests, rooms);
 
 
