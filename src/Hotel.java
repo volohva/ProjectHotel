@@ -21,9 +21,8 @@ public class Hotel {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Для выбора нужной команды нажмите соответствующую ей цифру:\n1 - печать списка всех комнат\n" +
-                "2 - печать списка всех гостей\n");
+                "2 - печать списка всех гостей\n" + "3 - добавление нового гостя в базу\n");
         int tag = in.nextInt();
-        in.close();
 
         switch (tag){
             case (1):
@@ -32,10 +31,23 @@ public class Hotel {
             case (2):
                 Guests.main().guestsList();
                 break;
+            case (3):{
+                Scanner newGuest = new Scanner(System.in);
+                System.out.println("Введите ФИО нового гостя: ");
+                String nameGuest = newGuest.nextLine();
+                System.out.println("Введите возраст нового гостя: ");
+                String ageGuest = newGuest.nextLine();
+                System.out.println("Введите пол нового гостя: ");
+                String sexGuest = newGuest.nextLine();
+                Guests.main().addGuestConsole(nameGuest, ageGuest, sexGuest);
+                newGuest.close();
+                break;
+            }
             default:
                 System.out.println("Введенной вами команды не существует!");
                 break;
         }
+        in.close();
 
     }
 }

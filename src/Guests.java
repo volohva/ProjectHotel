@@ -26,8 +26,18 @@ public class Guests {
         return counter + 1;
     }
 
-    //тут будут методы для добавления нового гостя с консоли, изменения его данных,
+    //тут будут методы для изменения данных гостя,
     //поиска по id и удаления из бд
+
+    public void addGuestConsole(String nameGuest, String ageGuest, String sexGuest){
+        ArrayList<String> guestData = new ArrayList<>();
+        guestData.add(nameGuest);
+        guestData.add(ageGuest);
+        guestData.add(sexGuest);
+        Integer idGuest = createNewUserID(guests);
+        guests.put(idGuest, guestData);
+        System.out.println("Гость: " + nameGuest + " возраста: " + ageGuest + " пола: " + sexGuest + " добавлен в базу под номером: " + idGuest);
+    }
 
     public static Guests main() {
 
